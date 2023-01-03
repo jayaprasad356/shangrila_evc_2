@@ -191,5 +191,43 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
 
    
     });
+
+        /*users*/
+        Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['module:client_management']], function () {
+            Route::get('list', 'UserController@list')->name('list');
+            Route::post('search', 'ClientController@search')->name('search');
+        });
+        
+       /*---endusers---*/
+
+        /*settings*/
+        Route::group(['prefix' => 'settings', 'as' => 'settings.', 'middleware' => ['module:client_management']], function () {
+          
+            Route::get('edit', 'SettingsController@edit')->name('edit');
+            Route::post('update', 'SettingsController@update')->name('update');
+        });
+        
+       /*---endsettings---*/
+
+
+         /*evc_codes*/
+         Route::group(['prefix' => 'codes', 'as' => 'codes.', 'middleware' => ['module:client_management']], function () {
+            Route::get('add', 'CodeController@index')->name('add');
+            Route::post('store', 'CodeController@store')->name('store');
+            Route::get('list', 'CodeController@list')->name('list');
+            Route::delete('delete/{id}', 'CodeController@delete')->name('delete');
+            Route::post('search', 'CodeController@search')->name('search');
+        });
+
+        /*---endevc_codes---*/
+        
+
+        /*users*/
+        Route::group(['prefix' => 'bills', 'as' => 'bills.', 'middleware' => ['module:client_management']], function () {
+            Route::get('list', 'BillController@list')->name('list');
+            Route::post('search', 'BillController@search')->name('search');
+        });
+        
+        /*---endusers---*/
 });
 

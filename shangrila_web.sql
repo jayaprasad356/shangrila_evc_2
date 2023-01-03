@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 25, 2022 at 11:15 AM
+-- Generation Time: Jan 03, 2023 at 12:25 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `laravel_admin`
+-- Database: `shangrila_web`
 --
 
 -- --------------------------------------------------------
@@ -48,7 +48,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `f_name`, `l_name`, `phone`, `email`, `image`, `password`, `remember_token`, `created_at`, `updated_at`, `fcm_token`, `admin_role_id`, `status`) VALUES
-(1, 'Prasad', 'jandroid', '8778624681', 'jp@gmail.com', '2022-11-26-6381b91788eb5.png', '$2y$10$Gy4PyuzuKA3R.S6xawjPW.7kfYq4WtVy55pYRq02MkACefPm1b/92', 'QSGvljOYQLGH6VZOt64y34hN945OxWokX5XkoGiH0i9DMNGJewxmRFUORKhJ', '2022-11-22 09:16:44', '2022-12-25 10:32:34', NULL, 1, 1);
+(1, 'Prasad', 'jandroid', '8778624681', 'jp@gmail.com', '2022-11-26-6381b91788eb5.png', '$2y$10$Gy4PyuzuKA3R.S6xawjPW.7kfYq4WtVy55pYRq02MkACefPm1b/92', '1UL5zLSSFtBWvOPwlICwEBZSVo8lAtcrw3PTgj40VvKqezAB68uUVTc1PNlW', '2022-11-22 09:16:44', '2022-12-25 10:32:34', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -71,6 +71,31 @@ CREATE TABLE `admin_roles` (
 
 INSERT INTO `admin_roles` (`id`, `name`, `module_access`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Master Admin', NULL, 1, '2022-06-07 10:59:59', '2022-06-07 10:59:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bills`
+--
+
+CREATE TABLE `bills` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `emr_day` float DEFAULT NULL,
+  `emr_night` float DEFAULT NULL,
+  `gmr` float DEFAULT NULL,
+  `total` float DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `bills`
+--
+
+INSERT INTO `bills` (`id`, `user_id`, `date`, `emr_day`, `emr_night`, `gmr`, `total`, `created_at`, `updated_at`) VALUES
+(1, 1, '2022-01-03', 12, 15, 8, 1500, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -482,6 +507,27 @@ CREATE TABLE `email_verifications` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `evc_codes`
+--
+
+CREATE TABLE `evc_codes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `amount` int(11) DEFAULT NULL,
+  `evc_code` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `evc_codes`
+--
+
+INSERT INTO `evc_codes` (`id`, `amount`, `evc_code`, `created_at`, `updated_at`) VALUES
+(1, 600, 65144083, '2023-01-03 11:02:06', '2023-01-03 11:02:06');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -629,7 +675,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (116, '2022_12_20_122416_create_incomes_table', 44),
 (117, '2022_12_22_144746_create_staff_table', 45),
 (118, '2022_12_22_145737_create_staff_table', 46),
-(119, '2022_12_24_101845_create_expenses_table', 47);
+(119, '2022_12_24_101845_create_expenses_table', 47),
+(120, '2023_01_03_122101_create_users_table', 48),
+(121, '2023_01_03_132305_create_settings_table', 49),
+(122, '2023_01_03_143058_create_codes_table', 50),
+(123, '2023_01_03_163713_create_bills_table', 51);
 
 -- --------------------------------------------------------
 
@@ -758,29 +808,48 @@ CREATE TABLE `phone_verifications` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `day_electricity_meter_reading` int(11) DEFAULT NULL,
+  `night_electricity_meter_reading` int(11) DEFAULT NULL,
+  `day_gas_meter_reading` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `day_electricity_meter_reading`, `night_electricity_meter_reading`, `day_gas_meter_reading`, `created_at`, `updated_at`) VALUES
+(1, 120, 100, 45, NULL, '2023-01-03 08:56:37');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `f_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `l_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_type` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'null for user, kitchen for kitchen user',
-  `is_active` tinyint(4) NOT NULL DEFAULT 1 COMMENT '1 = active, 0 = inactive',
-  `image` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `is_phone_verified` tinyint(1) NOT NULL DEFAULT 0,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `property_type` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bedrooms_count` int(11) DEFAULT NULL,
+  `wallet` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `email_verification_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cm_firebase_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `point` decimal(8,2) NOT NULL DEFAULT 0.00,
-  `temporary_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`, `property_type`, `bedrooms_count`, `wallet`, `created_at`, `updated_at`) VALUES
+(1, 'test34@gmail.com', 'test@123', 'Refridgerator', 3, 4500, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -797,6 +866,12 @@ ALTER TABLE `admins`
 -- Indexes for table `admin_roles`
 --
 ALTER TABLE `admin_roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bills`
+--
+ALTER TABLE `bills`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -821,6 +896,12 @@ ALTER TABLE `currencies`
 -- Indexes for table `email_verifications`
 --
 ALTER TABLE `email_verifications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `evc_codes`
+--
+ALTER TABLE `evc_codes`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -882,10 +963,17 @@ ALTER TABLE `phone_verifications`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -901,6 +989,12 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `admin_roles`
 --
 ALTER TABLE `admin_roles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `bills`
+--
+ALTER TABLE `bills`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -928,6 +1022,12 @@ ALTER TABLE `email_verifications`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `evc_codes`
+--
+ALTER TABLE `evc_codes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -937,7 +1037,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT for table `oauth_clients`
@@ -958,10 +1058,16 @@ ALTER TABLE `phone_verifications`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

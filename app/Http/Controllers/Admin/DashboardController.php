@@ -13,6 +13,7 @@ use App\Model\OrderDetail;
 use App\Model\Product;
 use App\Model\Review;
 use App\User;
+use App\Model\User As CurrentUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -40,7 +41,7 @@ class DashboardController extends Controller
 
         $data = self::order_stats_data();
 
-        $data['customer'] = User::count();
+        $data['users'] = CurrentUser::count();
 
         return view('admin-views.dashboard', compact('data'));
     }

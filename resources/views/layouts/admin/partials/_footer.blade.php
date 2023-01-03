@@ -9,9 +9,9 @@
             <div class="d-flex justify-content-end">
                 <!-- List Dot -->
                 <ul class="list-inline list-separator">
-                    <li class="list-inline-item">
+                    <!-- <li class="list-inline-item">
                         <a class="list-separator-link" href="{{route('admin.business-settings.restaurant.restaurant-setup')}}">{{translate('Dashboard')}} {{translate('settings')}}</a>
-                    </li>
+                    </li> -->
 
                     <li class="list-inline-item">
                         <a class="list-separator-link" href="{{route('admin.settings')}}">{{translate('profile')}}</a>
