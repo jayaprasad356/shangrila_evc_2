@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2023 at 12:25 PM
+-- Generation Time: Jan 05, 2023 at 11:35 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -95,7 +95,8 @@ CREATE TABLE `bills` (
 --
 
 INSERT INTO `bills` (`id`, `user_id`, `date`, `emr_day`, `emr_night`, `gmr`, `total`, `created_at`, `updated_at`) VALUES
-(1, 1, '2022-01-03', 12, 15, 8, 1500, NULL, NULL);
+(1, 1, '2022-01-03', 12, 15, 8, 1500, NULL, NULL),
+(2, 1, '2022-01-05', NULL, NULL, NULL, 3500, '2023-01-05 09:49:55', '2023-01-05 09:49:55');
 
 -- --------------------------------------------------------
 
@@ -849,7 +850,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `property_type`, `bedrooms_count`, `wallet`, `created_at`, `updated_at`) VALUES
-(1, 'test34@gmail.com', 'test@123', 'Refridgerator', 3, 4500, NULL, NULL);
+(1, 'test34@gmail.com', 'test@123', 'Refridgerator', 3, 1600, NULL, '2023-01-05 09:49:55'),
+(2, 'sanjeevi2002@gmail.com', 'sanje76', 'Washing Machine', 5, 600, '2023-01-05 07:28:28', '2023-01-05 07:28:28');
 
 --
 -- Indexes for dumped tables
@@ -995,7 +997,7 @@ ALTER TABLE `admin_roles`
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `business_settings`
@@ -1067,7 +1069,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
