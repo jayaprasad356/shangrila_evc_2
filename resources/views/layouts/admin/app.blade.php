@@ -283,21 +283,7 @@
     }
 </script>
 <script>
-    @if(Helpers::module_permission_check('order_management'))
-        setInterval(function () {
-            $.get({
-                url: '{{route('admin.get-restaurant-data')}}',
-                dataType: 'json',
-                success: function (response) {
-                    let data = response.data;
-                    if (data.new_order > 0) {
-                        playAudio();
-                        $('#popup-modal').appendTo("body").modal('show');
-                    }
-                },
-            });
-        }, 10000);
-    @endif
+
 
     function form_alert(id, message) {
         Swal.fire({

@@ -3,17 +3,7 @@
             class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-flush navbar-container navbar-bordered">
         <div class="navbar-nav-wrap">
             <div class="navbar-brand-wrapper">
-                <!-- Logo -->
-                @php($restaurant_logo=\App\Model\BusinessSetting::where(['key'=>'logo'])->first()->value)
-                <a class="navbar-brand" href="{{route('admin.dashboard')}}" aria-label="">
-                    <img class="navbar-brand-logo"
-                         onerror="this.src='{{asset('public/assets/admin/img/160x160/img1.jpg')}}'"
-                         src="{{asset('storage/app/public/restaurant/'.$restaurant_logo)}}" alt="Logo">
-                    <img class="navbar-brand-logo-mini"
-                         onerror="this.src='{{asset('public/assets/admin/img/160x160/img1.jpg')}}'"
-                         src="{{asset('storage/app/public/restaurant/'.$restaurant_logo)}}"
-                         alt="Logo">
-                </a>
+
                 <!-- End Logo -->
             </div>
 
@@ -38,7 +28,7 @@
                         <div class="hs-unfold">
                             <div style="background:white;padding: 9px;border-radius: 5px;">
                                 @php( $local = session()->has('local')?session('local'):'en')
-                                @php($lang = \App\CentralLogics\Helpers::get_business_settings('language')??null)
+                                
                                 <div class="topbar-text dropdown disable-autohide mr-3 text-capitalize">
                                     @if(isset($lang) && array_key_exists('code', $lang[0]))
                                         <a class="topbar-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: black!important;">
@@ -117,9 +107,7 @@
 
                                 <div class="dropdown-divider"></div>
 
-                                <a class="dropdown-item" href="{{route('admin.settings')}}">
-                                    <span class="text-truncate pr-2" title="Settings">{{translate('settings')}}</span>
-                                </a>
+
 
                                 <div class="dropdown-divider"></div>
 

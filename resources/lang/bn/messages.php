@@ -721,7 +721,7 @@
   'Only available when order is out for delivery!' => 'অর্ডার আউট ফর ডেলিভের হলেই উপলব্ধ!',
   'Back' => 'পেছনে',
   'Environment Setup' => 'এনভায়রনমেন্ট সেটআপ',
-  'Ex : EFood' => 'যেমন : EFood',
+  'Ex : Web' => 'যেমন : Web',
   'Ex : http://localhost' => 'যেমন : http://localhost',
   'Ex : mysql' => 'যেমন : mysql',
   'Ex : http://localhost/' => 'যেমন : http://localhost/',

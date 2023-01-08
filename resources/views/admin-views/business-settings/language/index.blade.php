@@ -113,7 +113,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @php($language = App\CentralLogics\Helpers::get_business_settings('language'))
                                 @if(isset($language) && array_key_exists('code', $language[0]))
                                     @foreach($language as $key =>$data)
                                         <tr>

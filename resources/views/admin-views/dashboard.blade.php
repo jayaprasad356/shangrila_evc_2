@@ -34,7 +34,6 @@
 @endpush
 
 @section('content')
-    @if(Helpers::module_permission_check(MANAGEMENT_SECTION['dashboard_management']))
         <div class="content container-fluid">
             <!-- Page Header -->
             <div class="page-header"
@@ -45,9 +44,7 @@
                         <p>{{translate('welcome_message')}}</p>
                     </div>
                     <div class="col-sm mb-2 mb-sm-0" style="height: 25px">
-                        <label class="badge badge-soft-success float-right">
-                            Software Version : {{ env('SOFTWARE_VERSION') }}
-                        </label>
+
                     </div>
                 </div>
             </div>
@@ -81,7 +78,6 @@
             <!-- End Card -->
 
         </div>
-    @endif
  @endsection
 
         @push('script')

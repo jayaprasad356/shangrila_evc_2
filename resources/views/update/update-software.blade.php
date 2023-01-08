@@ -10,9 +10,6 @@
                         {{session('error')}}
                     </div>
                 @endif
-                <div class="mar-ver pad-btm text-center">
-                    <h1 class="h3">eFood Software Update</h1>
-                </div>
                 <div class="card mt-3">
                     <div class="card-body">
                         <form method="POST" action="{{route('update-system')}}">
